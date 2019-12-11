@@ -16,7 +16,7 @@ __author__ = 'Frank Boldewin ( http://www.github/fboldewin )'
 __version__ = '0.4'
 __license__ = 'GPL'
 
-import string, os, glob, binascii
+import string, os, glob, binascii, os
 from idaapi import *
 
 def STR2Hex(value):
@@ -52,8 +52,12 @@ def PreparateUUIDS(CurrentUUID):
   return PREPAREDDATA
     
 def main():
-  FILEUUID_CLASSES    = os.path.dirname(os.path.realpath(__file__)) + '\\classes.txt'
-  FILEUUID_INTERFACES = os.path.dirname(os.path.realpath(__file__)) + '\\interfaces.txt'
+  if os.name  == "nt":
+  	slash = "\\"
+  else:
+  	slash = "/"
+  FILEUUID_CLASSES    = os.path.dirname(os.path.realpath(__file__)) + slash + 'classes.txt'
+  FILEUUID_INTERFACES = os.path.dirname(os.path.realpath(__file__)) + slash + 'interfaces.txt'
 
   UUIDARRAY = []
   UUIDARRAYIndexValue = 0
